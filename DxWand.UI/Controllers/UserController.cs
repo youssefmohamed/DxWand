@@ -13,6 +13,7 @@ namespace DxWand.UI.Controllers
         private readonly string GET_USERS_URL = "/user/manage/getall";
         private readonly string GET_USER_INFO = "/user/manage/getinfo";
         private readonly string GET_USER_MSGS = "/message/get";
+        private readonly string POST_USER = "/user/manage/create";
         private readonly IApplicationService _applicationService;
         private readonly IConfiguration _configuration;
 
@@ -27,6 +28,27 @@ namespace DxWand.UI.Controllers
         {
             var usersResponse = await HttpClientHelper.GetAsync<ResponseModel<List<ApplicationUser>>>(GET_USERS_URL, _applicationService, _configuration);
             return View(usersResponse);
+        }
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Create([FromForm] CreateUserModel applicationUser)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View("Add",applicationUser);
+            }
+
+            var createUserResponse = await HttpClientHelper.PostAsync<CreateUserModel, ResponseModel<CreateUserModel>>(POST_USER, applicationUser, _applicationService, _configuration);
+            if (!createUserResponse.IsSuccess)
+            {
+                ModelState.AddModelError(string.Empty, createUserResponse.Message);
+                return View("Add", applicationUser);
+            }
+
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Details(string id) 
