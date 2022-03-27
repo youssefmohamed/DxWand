@@ -1,0 +1,29 @@
+﻿@{
+	ViewData["Title"] = "Users";
+}
+@model ResponseModel<List<ApplicationUser>>
+
+<div class="container page">
+	@if (Model == null || !Model.IsSuccess)
+	{
+		<p class="text-danger">@Model?.Message</p>
+		return;
+	}
+	
+	<div class="row row-header">
+		<div class="col col-md-3">Email</div>
+		<div class="col col-md-3">Date of birth</div>
+		<div class="col col-md-3">Gender</div>
+		<div class="col col-md-3"></div>
+	</div>
+	@foreach(var user in Model.Data)
+	{
+		<div class="row row-item">
+			<div class="col col-md-3">@user.Email</div>
+			<div class="col col-md-3">@user.BirthDate.ToString("MM/dd/yyyy")</div>
+			<div class="col col-md-3">@user.Gender.ToString()</div>
+			<div class="col col-md-3"><a asp-controller="User" asp-action="Details" asp-route-id="@user.Id">Details</a></div>
+		</div>
+	}
+
+</div>

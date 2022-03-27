@@ -1,0 +1,17 @@
+﻿@{
+	ViewData["Title"] = "Add message";
+}
+@model AddMessageModel
+
+<div class="container page">
+	<h3 class="section-header-title">Add new message</h3>
+	<form method="post" asp-controller="Message" asp-action="Create">
+		<div class="form-group">
+			<label asp-for="Content">Content</label>
+			<textarea class="form-control" asp-for="Content"></textarea>
+			<span class="text-danger" asp-validation-for="Content"></span>
+		</div>
+		<button class="btn btn-primary" type="submit">Add</button>
+	</form>
+	<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+</div>

@@ -1,0 +1,35 @@
+﻿@{
+	ViewData["Title"] = "User Details";
+}
+@model UserDetailsModel
+
+<div class="class="container page"">
+	<div style="margin:10px auto;" >
+	<h3 class="section-header-title">@Model.ApplicationUser.Email - Details</h3>
+	<div class="row row-header">
+		<div class="col col-md-4">Email</div>
+		<div class="col col-md-4">Date of birth</div>
+		<div class="col col-md-4">Gender</div>
+	</div>
+	<div class="row row-item">
+		<div class="col col-md-4">@Model.ApplicationUser.Email</div>
+		<div class="col col-md-4">@Model.ApplicationUser.BirthDate.ToString("MM/dd/yyyy")</div>
+		<div class="col col-md-4">@Model.ApplicationUser.Gender</div>
+	</div>
+</div>
+
+<div style="margin:50px auto;">
+	<h3 class="section-header-title">@Model.ApplicationUser.Email - Messages</h3>
+	<div class="row row-header">
+		<div class="col col-md-10">Message</div>
+		<div class="col col-md-2">Language</div>
+	</div>
+	@foreach(var message in Model.Messages)
+	{
+		<div class="row row-item">
+			<div class="col col-md-10">@message.Content</div>
+			<div class="col col-md-2">@message.Lang</div>
+		</div>
+	}
+</div>
+</div>

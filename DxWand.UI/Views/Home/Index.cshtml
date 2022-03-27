@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model ResponseModel<DashboardModel>
+
+<div class="container home-page page">
+    <h3>Dashboard Statistics</h3>
+    @if(Model.IsSuccess)
+    {
+        <div class="row row-header">
+            <div class="col col-md-4">Messages</div>
+            <div class="col col-md-4">User ages</div>
+            <div class="col col-md-4">User genders</div>
+        </div>
+        <div class="row row-item">
+            <div class="col col-md-4">
+                @foreach (var msgStat in Model.Data.MessageStatistics)
+                {
+                    if(msgStat.Value > 0)
+                    {
+                        <div>
+                            <span>@msgStat.Key : </span>
+                            <span>@msgStat.Value</span>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="col col-md-4">
+                @foreach (var msgStat in Model.Data.AgeStatistics)
+                {
+                    if(msgStat.Value > 0)
+                    {
+                        <div>
+                            <span>@msgStat.Key : </span>
+                            <span>@msgStat.Value</span>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="col col-md-4">
+                @foreach (var msgStat in Model.Data.GenderStatistics)
+                {
+                    if(msgStat.Value > 0)
+                    {
+                        <div>
+                            <span>@msgStat.Key : </span>
+                            <span>@msgStat.Value</span>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        
+    }
+</div>

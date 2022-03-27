@@ -1,0 +1,25 @@
+﻿@{
+	ViewData["Title"] = "Messages";
+}
+@model ResponseModel<List<MessageModel>>
+
+@if (Model == null || !Model.IsSuccess)
+{
+	<p class="text-danger">@Model?.Message</p>
+}
+<div style="overflow:hidden;" class="container page">
+	<a  asp-controller="Message" asp-action="Add" style="margin:10px auto;">Add New Message</a>
+	<div style="margin:10px auto;">
+		<div class="row row-header">
+			<div class="col col-md-10">Message</div>
+			<div class="col col-md-2">Language</div>
+		</div>
+		@foreach(var message in Model.Data)
+		{
+			<div class="row row-item">
+				<div class="col col-md-10">@message.Content</div>
+				<div class="col col-md-2">@message.Lang</div>
+			</div>
+		}
+	</div>
+</div>
