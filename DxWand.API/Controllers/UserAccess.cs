@@ -17,9 +17,9 @@ namespace DxWand.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] UserLoginCommand createUserCommand) 
+        public async Task<IActionResult> Login([FromBody] UserLoginCommand userLoginCommand) 
         {
-            var loginResult = await _mediator.Send(createUserCommand);
+            var loginResult = await _mediator.Send(userLoginCommand);
             return  new ObjectResult(loginResult) { StatusCode = loginResult.StatusCode };
         }
 
