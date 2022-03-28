@@ -13,7 +13,7 @@
   1. DxWand.API
   2. DxWand.UI
 
-#Implemented features can be used through th UI 
+#Implemented features can be used through the UI 
  1. There are 2 types of users (Admin,User)
  2. Login screen for admin and normal users
  3. Add messages
