@@ -46,7 +46,8 @@ namespace DxWand.Infrastructure.Data
                 new IdentityUserRole<string> 
                 { 
                     RoleId = "8b4671fd-1aaa-438c-9554-3b1d6987c06c",
-                    UserId = "3c948e49-b382-488e-8f9b-05377d91bf75" }
+                    UserId = "3c948e49-b382-488e-8f9b-05377d91bf75"
+                }
             );
         }
     }
