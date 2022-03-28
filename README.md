@@ -6,6 +6,6 @@
   3- Entity Frame Work 5.0.15
   
 #First Login Credentials
-  Email: admin@dxwand.com
-  Password: 12345678
+  ##Email: admin@dxwand.com
+  ##Password: 12345678
 
