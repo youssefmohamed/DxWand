@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using System.Text;
+using DxWand.API.Filters;
 using DxWand.Application.Messages.Profiles;
 using DxWand.Application.Settings;
 using DxWand.Application.Users.Handlers;
@@ -41,7 +42,8 @@ namespace DxWand.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers(options => options.Filters.Add(typeof(HandleExceptionAttribute)));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserManagement.API", Version = "v1" });

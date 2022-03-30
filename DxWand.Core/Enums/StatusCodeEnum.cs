@@ -4,6 +4,7 @@
     {
         Success = 200,
         BadRequest = 400,
-        Unauthorized = 401
+        Unauthorized = 401,
+        InternalServerError = 500
     }
 }
