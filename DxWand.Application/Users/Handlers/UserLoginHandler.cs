@@ -23,7 +23,9 @@ namespace DxWand.Application.Users.Handlers
         private readonly IUserRepository _userRepository;
         private readonly IValidator<UserLoginCommand> _validator;
         private readonly JwtSettings _jwtSettings;
-        public UserLoginHandler(IUserRepository userRepository, IValidator<UserLoginCommand> validator, IOptionsSnapshot<JwtSettings> jwtSettings)
+
+        public UserLoginHandler(IUserRepository userRepository, IValidator<UserLoginCommand> validator
+            , IOptionsSnapshot<JwtSettings> jwtSettings)
         {
             _userRepository = userRepository;
             _validator = validator;
@@ -70,14 +72,13 @@ namespace DxWand.Application.Users.Handlers
                         expires: DateTime.Now.AddMinutes(_jwtSettings.ExpireInMintues),
                         signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
                     );
-
+                    #endregion
                     return new ResponseMessage<string>
                     {
                         IsSuccess = true,
                         Data = new JwtSecurityTokenHandler().WriteToken(tokenOptions),
                         StatusCode = Convert.ToInt32(StatusCodeEnum.Success)
                     };
-                    #endregion
                 }
             }
 

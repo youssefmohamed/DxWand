@@ -11,7 +11,8 @@ namespace DxWand.UI.Helpers
 {
     public class HttpClientHelper
     {
-        public static async Task<R> GetAsync<R>(string resourceUrl, [FromServices] IApplicationService applicationService , [FromServices] IConfiguration configuration)
+        public static async Task<R> GetAsync<R>(string resourceUrl, [FromServices] IApplicationService applicationService 
+            , [FromServices] IConfiguration configuration)
         {
             var API_BASE_URL = configuration.GetSection("API_BASE_URL").Value;
             R response = default(R);
@@ -37,7 +38,8 @@ namespace DxWand.UI.Helpers
             return response;
         }
 
-        public static async Task<R> PostAsync<T,R>(string resourceUrl, T param, [FromServices] IApplicationService applicationService, [FromServices] IConfiguration configuration)
+        public static async Task<R> PostAsync<T,R>(string resourceUrl, T param, [FromServices] IApplicationService applicationService
+            , [FromServices] IConfiguration configuration)
         {
             var API_BASE_URL = configuration.GetSection("API_BASE_URL").Value;
             R response = default(R);

@@ -49,11 +49,14 @@ namespace DxWand.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UserManagement.API", Version = "v1" });
             });
 
+            services.AddHsts(options => options.MaxAge = TimeSpan.FromHours(1));
+
             services.AddDbContext<ApplicationDbContext>(options
                 => options.UseSqlServer(Configuration.GetConnectionString("DxWand"))
             , ServiceLifetime.Singleton);
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options => {
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
                 options.User.RequireUniqueEmail = true;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
@@ -112,6 +115,11 @@ namespace DxWand.API
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UserManagement.API v1"));
+            }
+
+            if (env.IsProduction()) 
+            {
+                app.UseHsts();
             }
 
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
